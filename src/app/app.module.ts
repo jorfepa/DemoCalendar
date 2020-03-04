@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { ReminderComponent } from './pages/reminder/reminder.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalendarComponent,
+    ReminderComponent
   ],
   imports: [
     BrowserModule,
