@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { ReminderComponent } from './pages/reminder/reminder.component';
 
+import { FullCalendarModule } from "@fullcalendar/angular";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { ReminderComponent } from './pages/reminder/reminder.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

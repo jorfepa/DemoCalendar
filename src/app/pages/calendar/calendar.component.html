@@ -1,1 +1,12 @@
-<p>calendar works!</p>
+<full-calendar 
+    defaultView="dayGridMonth" 
+    [height]="500"
+    [fixedWeekCount]="false"
+    [plugins]="calendarPlugins"
+    [weekends]="true"
+    [events]="calendarReminders"
+    (eventClick)="editReminder($event)"
+    (dateClick)="addReminder($event.detail)"
+    
+    >
+</full-calendar>

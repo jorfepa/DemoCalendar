@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.fc-body .fc-sun { background-color:#F1F1F1; color: #75A0C2; }
+.fc-body .fc-sat { background-color:#F1F1F1; color: #75A0C2; }
+.fc-head { background-color:#2F74B5;  color: white;}
+
+.fc-event{
+    cursor: pointer;
+}
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
