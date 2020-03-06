@@ -1,12 +1,24 @@
-<full-calendar 
-    defaultView="dayGridMonth" 
-    [height]="500"
-    [fixedWeekCount]="false"
-    [plugins]="calendarPlugins"
-    [weekends]="true"
-    [events]="calendarReminders"
-    (eventClick)="editReminder($event)"
-    (dateClick)="addReminder($event.detail)"
-    
-    >
+<full-calendar defaultView="dayGridMonth" [height]="500" [fixedWeekCount]="false"
+    [plugins]="calendarPlugins" [weekends]="true" [events]="calendarReminders" (eventClick)="showEditReminder($event)"
+    (dateClick)="addReminder($event)">
 </full-calendar>
+
+<div class="fondo-negro animated fadeIn" *ngIf="showModal">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit reminder</h5>
+                    <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <app-reminder [data]="reminder" (onClose)="closeModal($event)"></app-reminder>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

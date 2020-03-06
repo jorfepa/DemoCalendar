@@ -5,8 +5,9 @@ import { ReminderComponent } from './pages/reminder/reminder.component';
 
 
 const routes: Routes = [
-  {path: '', component: CalendarComponent, data: {tittle: 'Calendar'}},
-  {path: 'reminder/:id', component: ReminderComponent, data: {tittle: 'Reminder'}}
+  {path: '', component: CalendarComponent, data: {tittle: 'Calendar'}}/* ,
+  {path: 'calendar', component: CalendarComponent, data: {tittle: 'Calendar'}},
+  {path: 'reminder/:id', component: ReminderComponent, data: {tittle: 'Reminder'}} */
 ];
 
 @NgModule({
