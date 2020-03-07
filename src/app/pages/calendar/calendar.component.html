@@ -1,4 +1,4 @@
-<full-calendar defaultView="dayGridMonth" [height]="500" [fixedWeekCount]="false"
+<full-calendar defaultView="dayGridMonth" [height]="600" [fixedWeekCount]="false" [eventLimit]="true"
     [plugins]="calendarPlugins" [weekends]="true" [events]="calendarReminders" (eventClick)="showEditReminder($event)"
     (dateClick)="addReminder($event)">
 </full-calendar>
