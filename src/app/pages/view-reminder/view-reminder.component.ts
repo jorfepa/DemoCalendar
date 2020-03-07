@@ -18,7 +18,6 @@ export class ViewReminderComponent implements OnInit {
   @Output() onEdit = new EventEmitter();
 
   reminder = new Reminder();
-  imgPath: string = '';
   date: string;
   time: string;
 

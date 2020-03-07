@@ -53,8 +53,7 @@
                         <div class="col-6 text-left">
                             {{weather.Main}} <br>
                             {{weather.Description}} <br>
-                            <img [src]="imgPath">
-                            <img src = "http://openweathermap.org/img/wn/{{weather.Icon}}@2x.png">
+                            <img *ngIf="weather.Icon" src = "http://openweathermap.org/img/wn/{{weather.Icon}}@2x.png">
                         </div>
                     </div>
 

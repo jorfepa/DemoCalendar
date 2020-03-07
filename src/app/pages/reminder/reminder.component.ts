@@ -34,27 +34,31 @@ export class ReminderComponent implements OnInit {
   }
 
   save(f: NgForm) {
+    // Code for the toast message
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
       timer: 3000
-    })
+    });
 
+    // Formating the date
     this.reminder.DateTime = new Date(f.controls['date'].value + ' ' + f.controls['time'].value);
     if (this.reminder.Id == 0) {
-      this.reminderService.addReminder(this.reminder);
+      this.reminder.Id = this.reminderService.addReminder(this.reminder);
       Toast.fire({icon: 'success',title: 'Reminder created successfully'});
     }
     else {
       this.reminderService.editReminder(this.reminder);
       Toast.fire({icon: 'success',title: 'Reminder saved successfully'});
     }
+    
     this.onCloseEdit.emit();
     this.onSave.emit();
   }
 
   delete() {
+    // Confirmation message to delete a reminder
     Swal.fire({
       title: 'Are you sure to delete this reminder?',
       text: "You won't be able to revert this!",

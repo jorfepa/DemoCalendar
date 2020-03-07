@@ -25,7 +25,7 @@ export class WeatherService {
       map((resp: any) => {
 
         let weather = new Weather();
-        
+
         weather.Id = resp.list[resp.list.length - 1].weather[0].id;
         weather.Code = resp.cod;
         weather.Message = resp.message;
@@ -37,6 +37,5 @@ export class WeatherService {
 
       }));
 
-    }
-
+  }
 }
