@@ -1,27 +1,36 @@
-# DemoCalendar
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.13.
+# Demo Calendar
+This is a coding challenge for [*Jobsity*](https://www.jobsity.com)
 
-## Development server
+**Technologies in the Frontend**
+ The Frontend was developed in the Javascript framework Angular 8, some tools are needed for a better User Experience:
+ 
+ - **FullCalendar**.- It is a power tool to build a calendar in the interface and show a friendly view to user.
+ - **Moment.js**.- It is a library that removes the need to use the native JavaScript Date object directly and allow us a whole lot easier to work with dates.
+ - **SweetAlert**.- It help us to show alerts, confirmations and errors messages to the user.
+ - **Bootstrap**.- It allow us to build very nice and  intuitive interfaces with some components like Buttons, Menus, Colors, etc.
+ 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**Objectives completed**
 
-## Code scaffolding
+ - Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also, include a city.
+ - Display reminders on the calendar view in the correct time order.
+ - Allow the user to select color when creating a reminder and display it appropriately.
+ - Ability to edit reminders – including changing text, city, day, time and color.
+ - Add a weather service call from a free API such as Open Weather Map, and get the weather forecast (ex. Rain) for the date of the calendar reminder based on the city.
+ 
+**Optional objectives completed**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ - Expand the calendar to support more than the current month.
+ - Properly handle overflow when multiple reminders appear on the same date.
+ - Functionality to delete one or ALL the reminders for a specific day.
 
-## Build
+**Instructions**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+ - After clone or download the source code, you must run "npm install" command to download all modules that are necessaries for Frontend run.
+ - You need to run "npm start" command to run the application in dev mode.
+ - There are 3 hardcoded reminder for inid some test, feel free to comment o delete this code lines on reminder.service.ts file.
+ - For add a reminder just click on any date and a popup will ask you to create a new reminder or delete all reminder of the chosen date.
+ - For edit a reminder just click on a reminder.
+ - The weather of each reminder will appear on the view with the other data.
+ - For edit a reminder, in the data reminder view you have to choose the edit button.
