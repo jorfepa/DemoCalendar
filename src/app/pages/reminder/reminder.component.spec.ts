@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/* import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReminderComponent } from './reminder.component';
 
@@ -23,3 +23,18 @@ describe('ReminderComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+ */
+import { ReminderComponent } from "./reminder.component";
+ describe('ReminderComponent', () =>{
+   let component: ReminderComponent;
+
+   beforeEach(()=>{
+    component = new ReminderComponent(null,null);
+   });
+
+   it ('It must returns a 30 max character string', () =>{
+     
+    expect (component.reminder.City.length).toBeLessThanOrEqual(30);
+    
+   });
+ });

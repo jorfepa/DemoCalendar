@@ -9,13 +9,15 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { ReminderComponent } from './pages/reminder/reminder.component';
+import { ViewReminderComponent } from './pages/view-reminder/view-reminder.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    ReminderComponent
+    ReminderComponent,
+    ViewReminderComponent
   ],
   imports: [
     BrowserModule,

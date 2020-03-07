@@ -1,0 +1,71 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card card-body m-0">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b>Reminder: </b>
+                        </div>
+                        <div class="col-6 text-left">
+                            {{reminder.Title}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b>Date: </b>
+                        </div>
+                        <div class="col-6 text-left">
+                            {{date}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b>Time: </b>
+                        </div>
+                        <div class="col-6 text-left">
+                            {{time}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b for="favcolor">Select reminder color:</b>
+                        </div>
+                        <div class="col-2">
+                            <input [(ngModel)]="reminder.Color" type="color" name="color" [value]="reminder.Color"
+                                class="form-control form-control-sm w-5 disabled" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b>City: </b>
+                        </div>
+                        <div class="col-6 text-left">
+                            {{reminder.City}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <b>weather in {{reminder.City}}: </b>
+                        </div>
+                        <div class="col-6 text-left">
+                            {{weather.Main}} <br>
+                            {{weather.Description}} <br>
+                            <img [src]="imgPath">
+                            <img src = "http://openweathermap.org/img/wn/{{weather.Icon}}@2x.png">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10 mr-1" (click)="edit()">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-secondary waves-effect waves-light mr-1" (click)="close()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

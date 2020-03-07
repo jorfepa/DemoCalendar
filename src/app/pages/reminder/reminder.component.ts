@@ -16,6 +16,8 @@ export class ReminderComponent implements OnInit {
 
   @Input() public data: any;
   @Output() onClose = new EventEmitter();
+  @Output() onSave = new EventEmitter();
+  @Output() onCloseEdit = new EventEmitter();
 
   reminder = new Reminder();
   date: string;
@@ -40,7 +42,8 @@ export class ReminderComponent implements OnInit {
     else{      
       this.reminderService.editReminder(this.reminder);
     }
-    this.onClose.emit();
+    this.onCloseEdit.emit();
+    this.onSave.emit();
   }
 
   delete(f){
@@ -49,6 +52,11 @@ export class ReminderComponent implements OnInit {
   }
   
   cancel(f: NgForm) {
-    this.onClose.emit();
+    if (this.reminder.Id == 0) {
+      this.onClose.emit();
+    }
+    else{      
+      this.onCloseEdit.emit(false);
+    }
   }
 }
