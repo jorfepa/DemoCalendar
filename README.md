@@ -28,7 +28,7 @@ This is a coding challenge for [*Jobsity*](https://www.jobsity.com)
 **Instructions**
 
  - After clone or download the source code, you must run "npm install" command to download all modules that are necessaries for Frontend run.
- - You need to run "npm start" command to run the application in dev mode.
+ - You need to run "ng serve" command to run the application in dev mode.
  - There are 3 hardcoded reminder for inid some test, feel free to comment o delete this code lines on reminder.service.ts file.
  - For add a reminder just click on any date and a popup will ask you to create a new reminder or delete all reminder of the chosen date.
  - For edit a reminder just click on a reminder.
