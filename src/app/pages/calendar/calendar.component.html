@@ -1,7 +1,45 @@
-<full-calendar defaultView="dayGridMonth" [height]="600" [fixedWeekCount]="false" [eventLimit]="true"
-    [plugins]="calendarPlugins" [weekends]="true" [events]="calendarReminders" (eventClick)="showEditReminder($event)"
-    (dateClick)="addReminder($event)">
-</full-calendar>
+<div class="text-center">
+    <div class="btn-group mt-1" role="group">
+        <button (click)="prevMonth()" type="button" class="btn btn-primary">< PREV</button>
+        <h4 class="monthHeader pl-5 pr-5">{{monthString}}-{{year}}</h4>
+        <button (click)="nextMonth()" type="button" class="btn btn-primary">NEXT ></button>
+    </div>
+</div>
+
+<div class="month">
+    <div class="headers text-center">Sunday</div>
+    <div class="headers text-center">Monday</div>
+    <div class="headers text-center">Tuesday</div>
+    <div class="headers text-center">Wednesday</div>
+    <div class="headers text-center">Thursday</div>
+    <div class="headers text-center">Friday</div>
+    <div class="headers text-center">Saturday</div>
+
+    <div class="day border" *ngFor="let e of emptyDays">
+        <div class="number text-left">
+
+        </div>
+    </div>
+
+    <div (click)="addReminder(day)" class="day text-center border"
+        [ngClass]="{'weekend':isWeekend(year+'-'+month+'-'+day)}" *ngFor="let day of monthDays">
+        <div class="number text-left">
+            {{day}}
+        </div>
+        <div class="reminders">
+            <div (click)="showEditReminder(reminder); $event.stopPropagation();"
+                *ngFor="let reminder of reminders" class="reminder"
+                [ngStyle]="{'background-color': reminder.Color}">
+                <div *ngIf="reminder.DateTime.getDate()==day">
+                    <b>{{reminder.DateTime | date:'H:mm'}}</b>
+                    {{reminder.Title}}
+                    ({{reminder.City}})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="fondo-negro animated fadeIn" *ngIf="showModal">
     <div class="modal" style="display: block;" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -13,8 +51,10 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <app-reminder [hidden]="!isEditing" [data]="reminder" (onClose)="closeModal()" (onSave) = "updateReminders()" (onCloseEdit) = "setEditReminder(false)"></app-reminder>
-                    <app-view-reminder [hidden]="isEditing" [data]="reminder" [weather]="weather" (onClose)="closeModal()" (onEdit) = "setEditReminder(true)"></app-view-reminder>
+                    <app-reminder [hidden]="!isEditing" [data]="reminder" (onClose)="closeModal()"
+                        (onSave)="updateReminders()" (onCloseEdit)="setEditReminder(false)"></app-reminder>
+                    <app-view-reminder [hidden]="isEditing" [data]="reminder" [weather]="weather"
+                        (onClose)="closeModal()" (onEdit)="setEditReminder(true)"></app-view-reminder>
                 </div>
                 <div class="modal-footer">
                 </div>

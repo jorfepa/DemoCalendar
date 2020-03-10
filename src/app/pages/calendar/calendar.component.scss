@@ -1,0 +1,59 @@
+.month {
+  margin: 20px;
+}
+
+.day {
+  padding: 0px 5px 5px 5px;
+  display: inline-block;
+  vertical-align: top;
+  width: 14.2%;
+  height: 100px;
+}
+
+.weekend {
+    padding: 0px 5px 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+    width: 14.2%;
+    height: 100px;
+    background-color: #F1F1F1;
+    color: #75A0C2;
+  }
+
+.emptyday {
+  display: inline-block;
+  width: 14.2%;
+  min-height: 90px;
+}
+
+.headers {
+  width: 14.2%;
+  display: inline-block;
+
+  background-color: #2f74b5;
+  color: white;
+}
+
+.reminders {
+  overflow: auto;
+  height: 80%;
+  color: black;
+}
+
+.reminder {
+    font-size: 12px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    cursor: pointer;
+}
+
+.number {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.monthHeader{
+    font-size: 25px; 
+    margin-right: 3px;
+    color: #969696;
+}

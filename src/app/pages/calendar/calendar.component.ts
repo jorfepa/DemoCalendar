@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OptionsInput } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
 import * as moment from 'moment';
 import Swal from 'sweetalert2'
 
@@ -19,14 +15,20 @@ import { WeatherService } from 'src/app/services/weather.service';
 })
 export class CalendarComponent implements OnInit {
 
-  calendarPlugins = [dayGridPlugin, interactionPlugin];
+  month = moment().month() + 1;
+  monthString = moment().format('MMMM')
+  year = moment().year();
+  currentMothDays = 0;
+
+  offset = 0;
+  emptyDays: string[] = [];
+  monthDays: string[] = [];
 
   showModal: boolean = false;
   reminder = new Reminder();
   isEditing: boolean = false;
   weather = new Weather();
 
-  calendarReminders = [];
   reminders: Reminder[] = [];
 
   // Code for the toast message
@@ -41,22 +43,43 @@ export class CalendarComponent implements OnInit {
     private weatherService: WeatherService) { }
 
   ngOnInit() {
-    this.populateCalendar(this.reminderService.getList());
+    this.refreshCalendar();
   }
 
-  async showEditReminder(calendarReminder) {
-    this.reminder = this.reminderService.getById(calendarReminder.event.id);
+  async showEditReminder(reminder: Reminder) {
+    this.reminder = this.reminderService.getById(reminder.Id);
     await this.getweather(this.reminder.City, this.reminder.DateTime);
     this.isEditing = false;
     this.showModal = true;
   }
 
-  addReminder(event) {
+  refreshCalendar() {
+    this.monthDays = [];
+    this.currentMothDays = moment(this.year + "-" + this.month, "YYYY-MM").daysInMonth();
+    this.offset = moment(this.year + "-" + this.month + "-01").day();
+    this.emptyDays = new Array(this.offset);
+
+    // Filtering de reminders array by month and year and then the array is sorted.
+    this.reminders = this.reminderService.reminders.filter(r =>
+      (moment(r.DateTime).month() + 1 == this.month) && (moment(r.DateTime).year() == this.year)
+    ).sort(function(a, b) {
+      var dateA = new Date(a.DateTime), dateB = new Date(b.DateTime);
+      return dateA.getTime() - dateB.getTime();
+  });
+
+    for (let i = 1; i <= this.currentMothDays; i++) {
+      this.monthDays.push(i.toString());
+    }
+  }
+
+  addReminder(day) {
+
+    let date = new Date(this.year + '-' + this.month + '-' + day);
 
     // Code for the confirmation message
     Swal.fire({
       title: 'What do you what to do?',
-      text: "Add a new reminder or delete all reminders of " + moment(event.date).format('YYYY-MM-DD'),
+      text: "Add a new reminder or delete all reminders of " + moment(date).format('YYYY-MM-DD'),
       icon: 'question',
       showCloseButton: true,
       showCancelButton: true,
@@ -69,7 +92,7 @@ export class CalendarComponent implements OnInit {
         //Create a new reminder
         this.reminder = new Reminder();
         this.reminder.Id = 0;
-        this.reminder.DateTime = event.date;
+        this.reminder.DateTime = date;
         this.reminder.Color = '#8080ff'
 
         this.isEditing = true;
@@ -79,7 +102,7 @@ export class CalendarComponent implements OnInit {
         result.dismiss === Swal.DismissReason.cancel
       ) {
         // Delete all reminders from the selected date
-        this.deleteAllFromDate(event.date);
+        this.deleteAllFromDate(date);
       }
     });
   }
@@ -95,7 +118,7 @@ export class CalendarComponent implements OnInit {
   }
 
   updateReminders() {
-    this.populateCalendar(this.reminderService.getList());
+    this.refreshCalendar();
   }
 
   deleteAllFromDate(date: Date) {
@@ -105,20 +128,26 @@ export class CalendarComponent implements OnInit {
       return moment(r.DateTime).format('YYYY-MM-DD') != moment(date).format('YYYY-MM-DD')
     });
 
-    this.toast.fire({icon: 'success',title: 'All the reminders were deleted correctly'});
+    this.toast.fire({ icon: 'success', title: 'All the reminders were deleted correctly' });
     this.updateReminders();
   }
 
-  populateCalendar(reminders: Reminder[]) {
-    this.calendarReminders = [];
-    reminders.forEach(reminder => {
-      this.calendarReminders.push({
-        id: reminder.Id,
-        title: reminder.Title + ' (' + reminder.City + ')',
-        start: reminder.DateTime,
-        color: reminder.Color
-      });
-    });
+  prevMonth() {
+    this.year = this.month == 1 ? this.year - 1 : this.year;
+    this.month = this.month == 1 ? 12 : this.month - 1;
+    this.monthString = moment(this.month + '-01' + '-01').format('MMMM');
+    this.refreshCalendar();
+  }
+  nextMonth() {
+    this.year = this.month == 12 ? this.year + 1 : this.year;
+    this.month = this.month == 12 ? 1 : this.month + 1;
+    this.monthString = moment(this.month + '-01' + '-01').format('MMMM');
+    this.refreshCalendar();
+  }
+
+  isWeekend(date: string) {
+    if ((moment(date).weekday() == 0) || (moment(date).weekday() == 6))
+      return true;
   }
 
   getweather(city: string, date: Date) {
@@ -129,7 +158,7 @@ export class CalendarComponent implements OnInit {
         if (error.status == '404') {
           this.weather = new Weather();
           this.weather.Main = 'City not found';
-          this.toast.fire({icon: 'error',title: 'The weather for this city does not exists'});
+          this.toast.fire({ icon: 'error', title: 'The weather for this city does not exists' });
         }
       }));
   }

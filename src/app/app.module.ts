@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FullCalendarModule } from "@fullcalendar/angular";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
@@ -22,7 +21,6 @@ import { ViewReminderComponent } from './pages/view-reminder/view-reminder.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FullCalendarModule,
     FormsModule,
     HttpClientModule
   ],

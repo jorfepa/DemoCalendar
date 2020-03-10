@@ -30,7 +30,7 @@ export class ReminderComponent implements OnInit {
   ngOnInit() {
     this.reminder = this.data;
     this.date = moment(this.reminder.DateTime).format('YYYY-MM-DD');
-    this.time = moment(this.reminder.DateTime).format('hh:mm');
+    this.time = moment(this.reminder.DateTime).format('HH:mm');
   }
 
   save(f: NgForm) {
