@@ -62,10 +62,10 @@ export class CalendarComponent implements OnInit {
     // Filtering de reminders array by month and year and then the array is sorted.
     this.reminders = this.reminderService.reminders.filter(r =>
       (moment(r.DateTime).month() + 1 == this.month) && (moment(r.DateTime).year() == this.year)
-    ).sort(function(a, b) {
+    ).sort(function (a, b) {
       var dateA = new Date(a.DateTime), dateB = new Date(b.DateTime);
       return dateA.getTime() - dateB.getTime();
-  });
+    });
 
     for (let i = 1; i <= this.currentMothDays; i++) {
       this.monthDays.push(i.toString());
